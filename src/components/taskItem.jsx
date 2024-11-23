@@ -1,20 +1,20 @@
-import { useState } from "react"
 import styles from "./taskItem.module.css"
-const TaskItem = () => {
-    const [todos, setTodos] = useState(0)
+const TaskItem = ({task, editTask, deleteTask}) => {
 
 
   return (
-   <li className={`${styles.container} ${styles.default}`}>
+   <li className={`${styles.container} ${task?.completed ? styles.succes : styles.default}`}
+   onClick={() => editTask(task.id, !task.completed)}
+   >
         <div className={styles.item}>
             <div className={`${styles.id} ${styles.idDefault}`}>
-                1
+                {task.id}
             </div>
             <div className={styles.contentDefault}>
-              Ranger mon bureau et finir dapprendre react
+              {task.title}
             </div>
         </div>
-        <button className="button-primary">x</button>
+        <button className="button-primary" onClick={deleteTask}>x</button>
    </li>
   )
 }
